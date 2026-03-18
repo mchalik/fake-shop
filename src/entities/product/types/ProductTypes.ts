@@ -16,16 +16,6 @@ export type ProductsResponse = {
     skip: number
 }
 
-export type ListingType = { 
-    isPlaceholderData: boolean,
-    data: ProductsResponse | undefined
-}
-
-export type ProductsListType = {
-    data: ProductsResponse | undefined,
-    isPlaceholderData: boolean
-}
-
 export type getProductsParams = {
     skip: number,
     limit: number

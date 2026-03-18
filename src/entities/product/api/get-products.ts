@@ -1,5 +1,4 @@
-import { Product, ProductsResponse, getProductsParams } from "../types/ListingTypes";
-import { getProductsParams } from "../../../pages/ProductsPage/types/types";
+import { Product, ProductsResponse, getProductsParams } from "../types/ProductTypes";
 
 const selectedProps: Array<keyof Product> = [
   'id',

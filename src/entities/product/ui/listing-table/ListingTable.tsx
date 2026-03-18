@@ -3,11 +3,17 @@ import {
 } from "@mui/material";
 
 import { Rating } from "../rating/Rating";
-import { ProductsListType } from "../../types/ListingTypes";
+import { ProductsResponse } from "../../types/ProductTypes";
 
 import * as styles from './ListingTable.module.css';
 
-export const ListingTable = ({ isPlaceholderData, data }: ProductsListType) => {
+export const ListingTable = ({
+  staleState: isPlaceholderData, 
+  data
+}: {
+    data: ProductsResponse | undefined,
+    staleState: boolean
+}) => {
   return (
     <TableContainer component={Paper} sx={{ boxShadow: 3, borderRadius: 2 }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -1,4 +1,4 @@
-import { dirname } from 'node:path';
+import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from '@rspack/cli';
 import { rspack } from '@rspack/core';
@@ -17,6 +17,9 @@ export default defineConfig({
   },
   resolve: {
     extensions: ['...', '.ts', '.tsx', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    },
   },
   module: {
     rules: [
@@ -64,7 +67,7 @@ export default defineConfig({
     ],
     parser: {
       'css/auto': {
-        namedExports: true,
+        namedExports: false,
       },
     }
   },

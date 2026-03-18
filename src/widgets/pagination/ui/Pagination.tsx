@@ -4,9 +4,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { ProductsResponse } from '../../../entities/product/types';
-
-import { PaginationType } from '../types/paginationTypes';
+import { ProductsResponse } from '@/entities/product';
 
 
 const getTotalString = (data?: ProductsResponse) => {
@@ -33,7 +31,12 @@ export const Pagination = ({
   currentPage,
   setCurrentPage,
   pagesTotal
-}: PaginationType) => {
+}: {
+  data: ProductsResponse | undefined,
+  currentPage: number,
+  setCurrentPage: (page: number) => void,
+  pagesTotal: number
+}) => {
   if (!data) {
     return null;
   }

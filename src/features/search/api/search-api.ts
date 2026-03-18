@@ -1,11 +1,12 @@
-import { ProductsResponse } from "../../../entities/product/types";
-import { getSearchParams } from "../../../pages/ProductsList/types/types";
+import { getProductsParams, ProductsResponse } from "@/entities/product";
 
-export const getSearch = async ({ searchQuery }: getSearchParams) => {
+export const getSearch = async (searchQuery: string, { limit, skip }: getProductsParams) => {
   try {
     const url = new URL('https://dummyjson.com/products/search');
 
     url.searchParams.set('q', searchQuery);
+    url.searchParams.set('skip', String(skip));
+    url.searchParams.set('limit', String(limit));
 
     const response = await fetch(url);
 
