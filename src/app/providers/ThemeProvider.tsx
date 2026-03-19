@@ -17,11 +17,11 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
       ].join(','),
     },
   });
-    
+
   return (
     <MuiThemeProvider theme={theme}>
       {children}
     </MuiThemeProvider>
   );
-        
+
 };

@@ -25,12 +25,12 @@ export const Login = () => {
         backgroundColor: '#f5f5f5', // Легкий серый фон, как на скриншоте
       }}
     >
-      <Card 
-        sx={{ 
-          minWidth: 350, 
-          padding: 4, 
-          borderRadius: 2, 
-          boxShadow: 3 
+      <Card
+        sx={{
+          minWidth: 350,
+          padding: 4,
+          borderRadius: 2,
+          boxShadow: 3
         }}
       >
         <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -72,9 +72,9 @@ export const Login = () => {
             label="Запомнить данные"
           />
 
-          <Button 
-            variant="contained" 
-            size="large" 
+          <Button
+            variant="contained"
+            size="large"
             fullWidth
             sx={{ mt: 1, textTransform: 'none', fontSize: '16px' }}
           >

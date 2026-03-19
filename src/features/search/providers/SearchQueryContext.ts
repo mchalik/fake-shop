@@ -1,0 +1,6 @@
+import { createContext, Dispatch, SetStateAction } from "react";
+
+export const SearchQueryContext = createContext<Partial<{
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>;
+    }>>({});

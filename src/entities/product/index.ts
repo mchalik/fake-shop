@@ -1,6 +1,8 @@
 export { ListingTable } from './ui/listing-table/ListingTable';
+export { SortContext } from './providers/SortContext';
 export { getProducts } from './api/get-products';
-export { useProducts } from './hooks/useProducts';
+export { useProducts, placeholderData } from './hooks/useProducts';
+export { useSort } from './hooks/useSort';
 export { PRODUCTS_PAGE_SIZE } from './constants/productConstans';
-export { placeholderData } from './hooks/useProducts';
-export type { ProductsResponse, getProductsParams } from './types/ProductTypes';
+export type { ProductsResponse, getProductsParams, sortingType } from './types/ProductTypes';
+

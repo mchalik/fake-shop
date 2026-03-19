@@ -2,13 +2,17 @@
 import { useState } from 'react';
 
 import { Pagination } from '@/widgets/pagination';
-import { ListingTable, useProducts, PRODUCTS_PAGE_SIZE } from '@/entities/product';
+import {
+  ListingTable, useProducts, PRODUCTS_PAGE_SIZE, useSort, SortContext
+} from '@/entities/product';
 
 export const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
- 
+  const { sort, onSort } = useSort();
+
   const { isPlaceholderData, data } = useProducts({
-    currentPage
+    currentPage,
+    sort
   });
 
   const isLoadingInUi = isPlaceholderData;
@@ -16,11 +20,13 @@ export const ProductList = () => {
 
   return (
     <>
-      <ListingTable staleState={isLoadingInUi} data={data} />
-      <Pagination 
-        currentPage={currentPage} 
+      <SortContext value={{ sort, onSort }}>
+        <ListingTable staleState={isLoadingInUi} data={data} />
+      </SortContext>
+      <Pagination
+        currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        data={data} 
+        data={data}
         pagesTotal={pagesTotal}
       />
     </>

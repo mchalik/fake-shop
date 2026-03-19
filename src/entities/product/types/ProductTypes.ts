@@ -16,7 +16,12 @@ export type ProductsResponse = {
     skip: number
 }
 
+export type sortingType = {
+    sortBy: keyof Product,
+    order: 'asc' | 'desc'
+}
+
 export type getProductsParams = {
     skip: number,
     limit: number
-}
+} & sortingType;

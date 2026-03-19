@@ -2,14 +2,16 @@ import {
   Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography
 } from "@mui/material";
 
-import { Rating } from "../rating/Rating";
 import { ProductsResponse } from "../../types/ProductTypes";
+
+import { TableHeadCell } from './TableHeadCell';
+import { Rating } from "./Rating";
 
 import * as styles from './ListingTable.module.css';
 
 export const ListingTable = ({
-  staleState: isPlaceholderData, 
-  data
+  staleState: isPlaceholderData,
+  data,
 }: {
     data: ProductsResponse | undefined,
     staleState: boolean
@@ -19,11 +21,11 @@ export const ListingTable = ({
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ color: '#B2B3B9' }}>
-            <TableCell sx={{ color: 'inherit'}}>Наименование</TableCell>
-            <TableCell sx={{ color: 'inherit'}} align="center">Вендер</TableCell>
-            <TableCell sx={{ color: 'inherit'}} align="center">Артикул</TableCell>
-            <TableCell sx={{ color: 'inherit'}} align="center">Оценка</TableCell>
-            <TableCell sx={{ color: 'inherit'}} align="center">Цена, ₽</TableCell>
+            <TableHeadCell prop="title">Наименование</TableHeadCell>
+            <TableHeadCell prop="brand">Вендер</TableHeadCell>
+            <TableHeadCell prop="sku">Артикул</TableHeadCell>
+            <TableHeadCell prop="rating">Оценка</TableHeadCell>
+            <TableHeadCell prop="price">Цена, ₽</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody style={{ opacity: isPlaceholderData ? 0.4 : 1 }}>
@@ -34,8 +36,8 @@ export const ListingTable = ({
               hover
             >
               <TableCell
-                component="th" 
-                scope="row" 
+                component="th"
+                scope="row"
                 sx={{ display: 'flex',  alignItems: 'center' }}
               >
                 <img src={product.thumbnail} alt={product.title} className={styles.image} />

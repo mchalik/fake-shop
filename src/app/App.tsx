@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import { Login } from '../pages/LoginPage';
 import { ProductsPage } from '../pages/ProductsPage';
+
 import { ThemeProvider } from './providers/ThemeProvider';
 
 // --- ГЛАВНЫЙ КОМПОНЕНТ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ---

@@ -6,7 +6,6 @@ import {
 
 import { ProductsResponse } from '@/entities/product';
 
-
 const getTotalString = (data?: ProductsResponse) => {
   if (!data) {
     return '';
@@ -15,7 +14,7 @@ const getTotalString = (data?: ProductsResponse) => {
   if (data.total < 2) {
     return data.total;
   }
- 
+
   if (data.total < 5) {
     return '1 - ' + data.total;
   }
@@ -49,10 +48,10 @@ export const Pagination = ({
 
       {data && data.total > 5 &&  (
         <MuiPagination
-          count={pagesTotal} 
+          count={pagesTotal}
           color="primary"
-          shape="rounded" 
-          page={currentPage} 
+          shape="rounded"
+          page={currentPage}
           onChange={(_, page) => setCurrentPage(page)}
         />
       )}

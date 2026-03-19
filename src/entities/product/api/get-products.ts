@@ -1,3 +1,5 @@
+import { addUrlParams } from "@/shared/utils/addUrlParams";
+
 import { Product, ProductsResponse, getProductsParams } from "../types/ProductTypes";
 
 const selectedProps: Array<keyof Product> = [
@@ -9,15 +11,19 @@ const selectedProps: Array<keyof Product> = [
   'sku',
   'thumbnail',
   'category'
-];
+] as const;
 
-export const getProducts = async ({ skip, limit }: getProductsParams) => {
+export const getProducts = async ({ skip, limit, sortBy, order }: getProductsParams) => {
   try {
     const url = new URL('https://dummyjson.com/products');
 
-    url.searchParams.set('select', selectedProps.join(','));
-    url.searchParams.set('skip', String(skip));
-    url.searchParams.set('limit', String(limit));
+    addUrlParams(url.searchParams, {
+      select: selectedProps.join(','),
+      skip,
+      limit,
+      sortBy,
+      order
+    });
 
     const response = await fetch(url);
 
@@ -29,7 +35,8 @@ export const getProducts = async ({ skip, limit }: getProductsParams) => {
 
     return data;
   } catch (error) {
-    console.log('Ошибка при получении списка продуктов', error);
+    // eslint-disable-next-line no-console
+    console.error('Ошибка при получении списка продуктов', error);
 
     throw error;
   }

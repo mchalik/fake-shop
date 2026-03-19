@@ -27,7 +27,7 @@ export const ProductsPage = () => {
         <Typography variant="h4" component="h1" fontWeight="bold">
           Товары
         </Typography>
-        <SearchQueryContext value={{ setSearchQuery }}>
+        <SearchQueryContext value={{ searchQuery, setSearchQuery }}>
           <Search />
         </SearchQueryContext>
       </Box>
@@ -48,7 +48,7 @@ export const ProductsPage = () => {
       {searchQuery ? (
         <SearchQueryContext value={{ searchQuery }}>
           <SearchList />
-        </SearchQueryContext> 
+        </SearchQueryContext>
       ) : <ProductList />}
     </Container>
   );

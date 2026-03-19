@@ -1,12 +1,17 @@
 import { getProductsParams, ProductsResponse } from "@/entities/product";
+import { addUrlParams } from "@/shared/utils/addUrlParams";
 
-export const getSearch = async (searchQuery: string, { limit, skip }: getProductsParams) => {
+export const getSearch = async (searchQuery: string, { limit, skip, sortBy, order }: getProductsParams) => {
   try {
     const url = new URL('https://dummyjson.com/products/search');
 
-    url.searchParams.set('q', searchQuery);
-    url.searchParams.set('skip', String(skip));
-    url.searchParams.set('limit', String(limit));
+    addUrlParams(url.searchParams, {
+      q: searchQuery,
+      skip,
+      limit,
+      sortBy,
+      order
+    });
 
     const response = await fetch(url);
 
@@ -18,6 +23,7 @@ export const getSearch = async (searchQuery: string, { limit, skip }: getProduct
 
     return data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Ошибка при получении списка продуктов', error);
 
     throw error;
