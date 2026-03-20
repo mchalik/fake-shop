@@ -79,7 +79,10 @@ export default [
       "no-console": "warn",
 
       "@stylistic/no-trailing-spaces": "error",
-      "@stylistic/no-multiple-empty-lines": ["error", { "max": 1}],
+      "@stylistic/no-multiple-empty-lines": ["error", { 
+        "max": 1,
+        "maxBOF": 0
+      }],
 
     },
   },

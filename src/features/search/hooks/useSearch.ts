@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { placeholderData, sortingType } from "@/entities/product";
+import { getSearch, placeholderData, sortingType } from "@/entities/product";
 
 import { SearchQueryContext } from "../providers/SearchQueryContext";
-import { getSearch } from "../api/search-api";
 import { SEARCH_PAGE_SIZE } from "../constants/constants";
 
 export const useSearch = ({ currentPage, sort }: { currentPage: number, sort: sortingType }) => {

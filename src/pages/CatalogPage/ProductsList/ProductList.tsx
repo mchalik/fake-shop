@@ -1,24 +1,21 @@
-
 import { useState } from 'react';
 
 import { Pagination } from '@/widgets/pagination';
-import { useSearch } from '@/features/search';
-import { ListingTable, useSort, SortContext } from '@/entities/product';
+import {
+  ListingTable, useProducts, PRODUCTS_PAGE_SIZE, useSort, SortContext
+} from '@/entities/product';
 
-const PAGE_SIZE = 5;
-
-export const SearchList = () => {
+export const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { sort, onSort } = useSort();
 
-  const {
-    isPlaceholderData,
-    data,
-    isLoading
-  } = useSearch({ currentPage, sort });
+  const { isPlaceholderData, data } = useProducts({
+    currentPage,
+    sort
+  });
 
-  const pagesTotal = data ? Math.ceil(data?.total / PAGE_SIZE) : 0;
-  const isLoadingInUi = isLoading || isPlaceholderData;
+  const isLoadingInUi = isPlaceholderData;
+  const pagesTotal = data ? Math.ceil(data?.total / PRODUCTS_PAGE_SIZE) : 0;
 
   return (
     <>

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import {
   Box,
@@ -15,7 +14,7 @@ import { Search, SearchQueryContext } from '@/features/search';
 import { ProductList } from './ProductsList/ProductList';
 import { SearchList } from './SearchList/SearchList';
 
-import * as styles from './ProductsPage.module.css';
+import * as styles from './CatalogPage.module.css';
 
 export const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');

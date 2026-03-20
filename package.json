@@ -19,7 +19,8 @@
     "css-modules-typescript-loader": "^4.0.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "ts-pattern": "^5.9.0"
+    "ts-pattern": "^5.9.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/css": "^1.0.0",
@@ -29,6 +30,7 @@
     "@rspack/core": "^1.7.8",
     "@rspack/plugin-react-refresh": "^1.6.0",
     "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^25.5.0",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.27",
@@ -36,6 +38,7 @@
     "eslint": "^9.39.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react": "^7.37.5",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
     "globals": "^17.4.0",
     "postcss": "^8.5.8",
     "react-refresh": "^0.18.0",

@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from '@rspack/cli';
 import { rspack } from '@rspack/core';
 import { ReactRefreshRspackPlugin } from '@rspack/plugin-react-refresh';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // eslint-disable-next-line no-undef
@@ -75,6 +76,19 @@ export default defineConfig({
     new rspack.HtmlRspackPlugin({
       template: './src/app/index.html',
     }),
+    new ForkTsCheckerWebpackPlugin({
+      // Опционально: настройки
+      typescript: {
+        memoryLimit: 4096, // Лимит памяти для TS сервера (в МБ)
+        configOverwrite: {
+          compilerOptions: {
+            // Можно переопределить настройки TS только для проверки типов
+            // Например, включить строгий режим только здесь
+            // strict: true 
+          }
+        }
+      },
+    }),,
     isDev ? new ReactRefreshRspackPlugin() : null,
   ],
   optimization: {
