@@ -109,7 +109,7 @@ export const Login = () => {
             Пожалуйста, авторизуйтесь
           </Typography>
 
-          <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <TextField
               required
               label="Почта"
