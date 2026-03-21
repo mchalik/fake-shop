@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "packageManager": "pnpm@10.32.1",
+  "browserslist": "last 2 versions",
   "scripts": {
     "dev": "rspack dev",
     "build": "rspack build",
@@ -41,6 +42,8 @@
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "globals": "^17.4.0",
     "postcss": "^8.5.8",
+    "postcss-loader": "^8.2.1",
+    "postcss-normalize": "^13.0.1",
     "react-refresh": "^0.18.0",
     "style-loader": "^4.0.0",
     "tailwindcss": "^4.2.1",

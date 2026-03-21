@@ -79,6 +79,11 @@ export default defineConfig({
         test: /\.css$/,
         exclude: /\.module\.css$/,
         type: 'css',
+        use: [
+          {
+            loader: 'postcss-loader',
+          }
+        ],
       },
     ],
     parser: {

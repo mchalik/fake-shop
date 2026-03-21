@@ -1,3 +1,5 @@
+@import-normalize "normalize/opinionated.css";
+
 body {
   font-family: "Google Sans Flex", sans-serif;
   font-optical-sizing: auto;
