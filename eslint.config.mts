@@ -7,9 +7,11 @@ import stylistic from '@stylistic/eslint-plugin';
 import { defineConfig, type Config } from 'eslint/config';
 
 const OFF = 'off';
+const WARN = 'warn';
 const ERROR = 'error';
 
 const ALWAYS = 'always';
+const NEVER = 'never';
 
 const importOrderRule: Config['rules'] = {
   'import/order': [ERROR, {
@@ -98,8 +100,8 @@ export default defineConfig([
       'no-duplicate-imports': [ERROR, {
         'allowSeparateTypeImports': true
       }],
-      'no-console': 'warn',
-      'comma-dangle': ['error', 'never']
+      'no-console': WARN,
+      'comma-dangle': [ERROR, NEVER]
     }
   }
 ]);
