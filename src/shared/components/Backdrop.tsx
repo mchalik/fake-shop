@@ -1,4 +1,4 @@
-import { CircularProgress, Backdrop as BackdropMui } from "@mui/material";
+import { CircularProgress, Backdrop as BackdropMui } from '@mui/material';
 
 export const Backdrop = () => {
   return (

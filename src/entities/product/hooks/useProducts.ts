@@ -1,8 +1,8 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { getProducts } from "../api/get-products";
-import { PRODUCTS_PAGE_SIZE } from "../constants/productConstans";
-import { sortingType, Product } from "../types/ProductTypes";
+import { getProducts } from '../api/get-products';
+import { PRODUCTS_PAGE_SIZE } from '../constants/productConstans';
+import { sortingType, Product } from '../types/ProductTypes';
 
 const emptyProduct: Product= {
   id: 0,

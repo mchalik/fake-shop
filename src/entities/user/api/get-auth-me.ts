@@ -5,12 +5,12 @@ export const getAuthMe = async (accessToken: string) => {
     console.log('getAuthMe');
     const url = new URL('https://dummyjson.com/auth/me');
     const response = await fetch(url, {
-      headers: { 'Authorization': `Bearer ${accessToken}` }
+      headers: { 'Authorization': `Bearer ${ accessToken }` }
     });
 
     if (!response.ok) {
 
-      throw new Error("Ошибка получения данных пользователя", {
+      throw new Error('Ошибка получения данных пользователя', {
         cause: { status: response.status }
       });
     }

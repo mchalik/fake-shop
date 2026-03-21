@@ -16,13 +16,13 @@ const getTotalString = (data?: ProductsResponse) => {
   }
 
   if (data.total < 5) {
-    return '1 - ' + data.total;
+    return `1 - ${ data.total }`;
   }
 
   const start = data.skip + 1;
   const end = data.skip + data.limit;
 
-  return start + ' - ' + end;
+  return `${ start } - ${ end }`;
 };
 
 export const Pagination = ({
@@ -46,7 +46,7 @@ export const Pagination = ({
         Показано {getTotalString(data)} из {data?.total}
       </Typography>
 
-      {data && data.total > 5 &&  (
+      {data && data.total > 5 && (
         <MuiPagination
           count={pagesTotal}
           color="primary"

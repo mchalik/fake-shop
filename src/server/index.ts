@@ -59,7 +59,7 @@ const server = http.createServer((clientReq, clientRes) => {
         });
 
         proxyReq.on('error', (e) => {
-          console.error(`Proxy error: ${e.message}`);
+          console.error(`Proxy error: ${ e.message }`);
           clientRes.writeHead(500);
           clientRes.end('Proxy Error');
         });
@@ -124,7 +124,7 @@ const server = http.createServer((clientReq, clientRes) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Сервер запущен: http://localhost:${PORT}`);
-  console.log(`- Статика из папки: ${DIST_PATH}`);
-  console.log(`- Прокси для логина: http://localhost:${PORT}/auth/login`);
+  console.log(`Сервер запущен: http://localhost:${ PORT }`);
+  console.log(`- Статика из папки: ${ DIST_PATH }`);
+  console.log(`- Прокси для логина: http://localhost:${ PORT }/auth/login`);
 });

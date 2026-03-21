@@ -1,5 +1,5 @@
-import { getProductsParams, ProductsResponse, type Product } from "@/entities/product";
-import { addUrlParams } from "@/shared/utils/addUrlParams";
+import { getProductsParams, ProductsResponse, type Product } from '@/entities/product';
+import { addUrlParams } from '@/shared/utils/addUrlParams';
 
 const selectedProps: Array<keyof Product> = [
   'id',
@@ -28,7 +28,7 @@ export const getSearch = async (searchQuery: string, { limit, skip, sortBy, orde
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw Error('Ошибка запроса при запросе поиска продуктов: ' + response.status);
+      throw Error(`Ошибка запроса при запросе поиска продуктов: ${ response.status }`);
     }
 
     const data: ProductsResponse = await response.json();

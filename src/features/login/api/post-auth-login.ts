@@ -8,7 +8,7 @@ export const postAuthLogin = async ({
   try {
     const url = new URL('https://dummyjson.com/auth/login');
 
-    const body =  JSON.stringify({
+    const body = JSON.stringify({
       username,
       password,
       expiresInMins: saveLogin ? 60 : 15,
@@ -20,7 +20,7 @@ export const postAuthLogin = async ({
     });
 
     if (!response.ok) {
-      throw Error('Ошибка отправки данных авторизации: ' + response.status);
+      throw Error(`Ошибка отправки данных авторизации: ${ response.status }`);
     }
 
     const data: User = await response.json();

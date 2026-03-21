@@ -69,7 +69,10 @@ export default [
     rules: {
       ...pluginReact.configs.recommended.rules,
       ...importOrderRule,
-      
+      "prefer-template": "error",
+      "@stylistic/quotes": ["error", "single"],
+      "@stylistic/template-curly-spacing": ["error", "always"],
+      "@stylistic/no-multi-spaces": "error",
       "indent": ["error", 2],
       "semi": ["error", "always"],
       "react/react-in-jsx-scope": "off",

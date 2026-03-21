@@ -32,7 +32,7 @@ export const ProductsPage = () => {
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography variant="h5" component="h2" fontWeight="bold">
-          Все позиции{searchQuery ? ' - ' + searchQuery : ''}
+          Все позиции {searchQuery ? `- ${ searchQuery }` : ''}
         </Typography>
         <div>
           <IconButton color='inherit' className={styles.reload}>

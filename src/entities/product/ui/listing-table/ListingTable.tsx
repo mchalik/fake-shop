@@ -1,11 +1,11 @@
 import {
   Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography
-} from "@mui/material";
+} from '@mui/material';
 
-import { ProductsResponse } from "../../types/ProductTypes";
+import { ProductsResponse } from '../../types/ProductTypes';
 
 import { TableHeadCell } from './TableHeadCell';
-import { Rating } from "./Rating";
+import { Rating } from './Rating';
 
 import * as styles from './ListingTable.module.css';
 
@@ -38,7 +38,7 @@ export const ListingTable = ({
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ display: 'flex',  alignItems: 'center' }}
+                sx={{ display: 'flex', alignItems: 'center' }}
               >
                 <img src={product.thumbnail} alt={product.title} className={styles.image} />
                 <div>
@@ -54,7 +54,7 @@ export const ListingTable = ({
                 <Typography variant="body2"><Rating value={product.rating} /></Typography>
               </TableCell>
               <TableCell sx={{ fontFamily: 'Roboto Mono' }} align="center">
-                {new Intl.NumberFormat("ru-RU", { style: "currency", currency: "RUB" }).format(product.price)}
+                {new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(product.price)}
               </TableCell>
             </TableRow>
           ))}

@@ -1,6 +1,6 @@
-import { addUrlParams } from "@/shared/utils/addUrlParams";
+import { addUrlParams } from '@/shared/utils/addUrlParams';
 
-import { Product, ProductsResponse, getProductsParams } from "../types/ProductTypes";
+import { Product, ProductsResponse, getProductsParams } from '../types/ProductTypes';
 
 const selectedProps: Array<keyof Product> = [
   'id',
@@ -28,7 +28,7 @@ export const getProducts = async ({ skip, limit, sortBy, order }: getProductsPar
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw Error('Ошибка запроса при получении списка продуктов: ' + response.status);
+      throw Error(`Ошибка запроса при получении списка продуктов: ${ response.status }`);
     }
 
     const data: ProductsResponse = await response.json();
