@@ -1,17 +1,17 @@
-import { LoginProps, User } from '@/entities/user';
+import { LoginFormData, User } from '@/entities/user';
 
 export const postAuthLogin = async ({
   username,
   password,
   saveLogin
-}: LoginProps) => {
+}: LoginFormData) => {
   try {
     const url = new URL('https://dummyjson.com/auth/login');
 
     const body = JSON.stringify({
       username,
       password,
-      expiresInMins: saveLogin ? 60 : 15,
+      expiresInMins: saveLogin ? 60 : 15
     });
     const response = await fetch(url, {
       method: 'POST',

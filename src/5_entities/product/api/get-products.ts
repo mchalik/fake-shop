@@ -1,6 +1,6 @@
 import { addUrlParams } from '@/shared/utils/addUrlParams';
 
-import { Product, ProductsResponse, getProductsParams } from '../types/ProductTypes';
+import { Product, ProductsResponse, GetProductsParams } from '../types/ProductTypes';
 
 const selectedProps: Array<keyof Product> = [
   'id',
@@ -13,7 +13,7 @@ const selectedProps: Array<keyof Product> = [
   'category'
 ] as const;
 
-export const getProducts = async ({ skip, limit, sortBy, order }: getProductsParams) => {
+export const getProducts = async ({ skip, limit, sortBy, order }: GetProductsParams) => {
   try {
     const url = new URL('https://dummyjson.com/products');
 

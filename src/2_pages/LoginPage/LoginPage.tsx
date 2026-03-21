@@ -1,4 +1,4 @@
-import { useState, useContext, type SubmitEvent, type ReactElement } from 'react';
+import { useState, useContext, type SubmitEvent, type ReactElement, type SyntheticEvent } from 'react';
 import { z } from 'zod';
 import {
   Box,
@@ -20,7 +20,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import { useMutation } from '@tanstack/react-query';
 
 import { postAuthLogin } from '@/features/login';
-import { UserContext } from '@/entities/user';
+import { LoginFormData, UserContext } from '@/entities/user';
 
 const names = new Set([
   'username',
@@ -34,35 +34,29 @@ const Form = z.object({
   saveLogin: z.boolean()
 });
 
-const getFormData = (formElements: HTMLFormControlsCollection) => {
-  const formData = {};
-
-  for (const element of formElements) {
-    const elementIsValidInput = element instanceof HTMLInputElement && names.has(element.name);
-
-    if (!elementIsValidInput) {
-      continue;
+const getInputEndAdornment = (endAdornment: ReactElement) => (
+  {
+    input: {
+      endAdornment
     }
-
-    formData[element.name] =
-     element.type === 'checkbox'
-       ? element.checked
-       : element.value;
   }
-
-  return formData;
-};
+);
 
 export const LoginPage = () => {
   const { setUser } = useContext(UserContext);
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisible = () => setPasswordVisible((value) => !value);
+  const [loginFormData, setLoginFormData] = useState<LoginFormData>({
+    username: 'emilys',
+    password: 'emilyspass',
+    saveLogin: true
+  });
 
   const mutationPostAuthLogin = useMutation({
     mutationFn: postAuthLogin,
     onSuccess: (user, loginProps) => {
-      setUser(user);
+      setUser?.(user);
 
       if (loginProps.saveLogin) {
         localStorage.setItem('ACCESS_TOKEN', user.accessToken);
@@ -75,8 +69,7 @@ export const LoginPage = () => {
   const onSubmit = (event: SubmitEvent) => {
     event.preventDefault();
 
-    const formData = getFormData(event.target.elements);
-    const FormSafeParsed = Form.safeParse(formData);
+    const FormSafeParsed = Form.safeParse(loginFormData);
 
     if (FormSafeParsed.error) {
       return;
@@ -85,12 +78,16 @@ export const LoginPage = () => {
     mutationPostAuthLogin.mutate(FormSafeParsed.data);
   };
 
-  const getInputEndAdornment = (endAdornment: ReactElement) => (
-    { input:{
-      endAdornment
+  const onChangeSetFormData = ({ target }: SyntheticEvent, checked?: boolean) => {
+    if (!(target instanceof HTMLInputElement)) {
+      return;
     }
-    }
-  );
+
+    setLoginFormData(data => ({
+      ...data,
+      [target.name]: checked ?? target.value
+    }));
+  };
 
   return (
     <Box
@@ -99,7 +96,7 @@ export const LoginPage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#f5f5f5'
       }}
     >
       <Card
@@ -124,7 +121,8 @@ export const LoginPage = () => {
               label="Почта"
               type="input"
               name="username"
-              defaultValue="emilys"
+              value={loginFormData.username}
+              onChange={onChangeSetFormData}
               variant="outlined"
               fullWidth
             />
@@ -134,9 +132,10 @@ export const LoginPage = () => {
               label="Пароль"
               name="password"
               type={passwordVisible ? 'input' : 'password' }
-              defaultValue="emilyspass"
+              value={loginFormData.password}
               variant="outlined"
               fullWidth
+              onChange={onChangeSetFormData}
               slotProps={getInputEndAdornment(
                 <InputAdornment position="end">
                   <IconButton
@@ -156,6 +155,8 @@ export const LoginPage = () => {
               control={<Checkbox defaultChecked color="primary" />}
               label="Запомнить данные"
               name="saveLogin"
+              checked={loginFormData.saveLogin}
+              onChange={onChangeSetFormData}
             />
             <Button
               type="submit"

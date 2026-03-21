@@ -14,8 +14,8 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
         'Roboto',
         'BlinkMacSystemFont',
         'sans-serif'
-      ].join(','),
-    },
+      ].join(',')
+    }
   });
 
   return (

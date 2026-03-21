@@ -36,7 +36,7 @@ const importOrderRule: Config['rules'] = {
       }
     ],
     'newlines-between': ALWAYS
-  }],
+  }]
 };
 
 const stylisticRules: Config['rules'] = {
@@ -50,14 +50,14 @@ const stylisticRules: Config['rules'] = {
     'arraysInObjects': true,
     'objectsInObjects': true
   }],
-  '@stylistic/no-multi-spaces': ERROR,
+  '@stylistic/no-multi-spaces': ERROR
 };
 
 export default defineConfig([
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ['dist/', 'node_modules/', 'build/'],
+    ignores: ['dist/', 'node_modules/', 'build/']
   },
   {
     files: [
@@ -73,18 +73,18 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node,
+        ...globals.node
       },
       parserOptions: {
         ecmaFeatures: {
-          jsx: true,
-        },
-      },
+          jsx: true
+        }
+      }
     },
     settings: {
       react: {
-        version: 'detect',
-      },
+        version: 'detect'
+      }
     },
     rules: {
       ...pluginReact.configs.recommended.rules,
@@ -99,6 +99,7 @@ export default defineConfig([
         'allowSeparateTypeImports': true
       }],
       'no-console': 'warn',
-    },
-  },
+      'comma-dangle': ['error', 'never']
+    }
+  }
 ]);

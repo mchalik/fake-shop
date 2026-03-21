@@ -14,7 +14,7 @@ export const TableHeadCell: FC<{ prop: keyof Product } & PropsWithChildren> = ({
     .otherwise(() => (<SwapVert fontSize='inherit' />));
 
   return (
-    <TableCell sx={{ color: 'inherit', whiteSpace: 'nowrap' }} onClick={() => onSort(prop)}>
+    <TableCell sx={{ color: 'inherit', whiteSpace: 'nowrap' }} onClick={() => onSort?.(prop)}>
       {children} <IconButton size='small'>{icon}</IconButton>
     </TableCell>
   );

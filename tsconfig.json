@@ -4,6 +4,9 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "baseUrl": ".",
+    "strictNullChecks": true,
+    "strict": true,
+    "noImplicitAny": true,
     "paths": {
       "@/app/*": ["src/1_app/*"],
       "@/pages/*": ["src/2_pages/*"],

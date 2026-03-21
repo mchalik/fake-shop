@@ -14,12 +14,15 @@ export const UserContext = createContext<Partial<{
      } >>({});
 
 export const UserProvider: FC<PropsWithChildren & { loginForm: ComponentType }> = ({ children, loginForm: LoginForm }) => {
-  const [userUpdated, setUser] = useState<User>(null);
+  const [userUpdated, setUser] = useState<User | null>(null);
   const token = useRef(localStorage.getItem('ACCESS_TOKEN') || sessionStorage.getItem('ACCESS_TOKEN'));
 
   const { data: initialUser, isLoading } = useQuery({
     queryKey: [],
-    queryFn: () => getAuthMe(token.current),
+    queryFn: () => {
+      return getAuthMe(token.current!);
+
+    },
     enabled: Boolean(token.current),
     retry: (failureCount: number, error: { cause: { status: number } }) => {
       if (error.cause.status === 401) {

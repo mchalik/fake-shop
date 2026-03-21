@@ -2,7 +2,11 @@ import { useState } from 'react';
 
 import { Pagination } from '@/widgets/pagination';
 import {
-  ListingTable, useProducts, PRODUCTS_PAGE_SIZE, useSort, SortContext
+  ListingTable,
+  useProducts,
+  PRODUCTS_PAGE_SIZE,
+  useSort,
+  SortContext
 } from '@/entities/product';
 
 export const ProductList = () => {

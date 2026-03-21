@@ -11,7 +11,7 @@ import * as styles from './ListingTable.module.css';
 
 export const ListingTable = ({
   staleState: isPlaceholderData,
-  data,
+  data
 }: {
     data: ProductsResponse | undefined,
     staleState: boolean

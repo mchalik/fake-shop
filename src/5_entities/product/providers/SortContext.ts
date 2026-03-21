@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-import { sortingType } from '../types/ProductTypes';
+import { Product, SortingType } from '../types/ProductTypes';
 
 export const SortContext = createContext<Partial<{
-    sort: sortingType,
-    onSort: (value: string) => void
+    sort: SortingType,
+    onSort: (value: keyof Product) => void
       }>>({});

@@ -19,7 +19,7 @@ export type User = {
   'refreshToken': string
 }
 
-export type LoginProps = {
+export type LoginFormData = {
   username: string,
   password: string,
   saveLogin: boolean

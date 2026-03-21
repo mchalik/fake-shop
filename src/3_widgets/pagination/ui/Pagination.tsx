@@ -1,7 +1,7 @@
 import {
   Box,
   Pagination as MuiPagination,
-  Typography,
+  Typography
 } from '@mui/material';
 
 import { ProductsResponse } from '@/entities/product';

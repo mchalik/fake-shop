@@ -2,7 +2,6 @@ import { User } from '@/entities/user';
 
 export const getAuthMe = async (accessToken: string) => {
   try {
-    console.log('getAuthMe');
     const url = new URL('https://dummyjson.com/auth/me');
     const response = await fetch(url, {
       headers: { 'Authorization': `Bearer ${ accessToken }` }

@@ -5,5 +5,5 @@ export { getSearch } from './api/get-search';
 export { useProducts, placeholderData } from './hooks/useProducts';
 export { useSort } from './hooks/useSort';
 export { PRODUCTS_PAGE_SIZE } from './constants/productConstans';
-export type { Product, ProductsResponse, getProductsParams, sortingType } from './types/ProductTypes';
+export type { Product, ProductsResponse, GetProductsParams as getProductsParams, SortingType as sortingType } from './types/ProductTypes';
 

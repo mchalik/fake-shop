@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { getProducts } from '../api/get-products';
 import { PRODUCTS_PAGE_SIZE } from '../constants/productConstans';
-import { sortingType, Product } from '../types/ProductTypes';
+import { SortingType, Product } from '../types/ProductTypes';
 
 const emptyProduct: Product= {
   id: 0,
@@ -22,7 +22,7 @@ export let placeholderData = {
   skip: 0
 };
 
-export const useProducts = ({ currentPage, sort }: { currentPage: number, sort: sortingType }) => {
+export const useProducts = ({ currentPage, sort }: { currentPage: number, sort: SortingType }) => {
   const queryClient = useQueryClient();
   const {
     data,
@@ -39,7 +39,9 @@ export const useProducts = ({ currentPage, sort }: { currentPage: number, sort: 
 
   console.log('useProducts', queryClient.getQueriesData({}));
 
-  placeholderData = data;
+  if (data) {
+    placeholderData = data;
+  }
 
   return {
     data,
