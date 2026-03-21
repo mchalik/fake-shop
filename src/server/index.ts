@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 // Настройка __dirname для ESM
 
-// @ts-expect-error
+// @ts-expect-error TODO: разобраться почему ошибка
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

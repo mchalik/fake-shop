@@ -7,7 +7,7 @@
     "dev": "rspack dev",
     "build": "rspack build",
     "preview": "rspack preview",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src eslint.config.mts",
     "lint:fix": "eslint ./src --fix",
     "preinstall": "npx -y only-allow pnpm",
     "type-check": "tsc ./src/app/index.tsx --noEmit --jsx react-jsx"

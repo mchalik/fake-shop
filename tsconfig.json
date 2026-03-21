@@ -5,9 +5,19 @@
     "moduleResolution": "nodenext",
     "baseUrl": ".",
     "paths": {
+      "@/app/*": ["src/1_app/*"],
+      "@/pages/*": ["src/2_pages/*"],
+      "@/widgets/*": ["src/3_widgets/*"],
+      "@/features/*": ["src/4_features/*"],
+      "@/entities/*": ["src/5_entities/*"],
+      "@/shared/*": ["src/6_shared/*"],
       "@/*": ["src/*"]
     },
     "jsx": "react-jsx",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
-  }
+  },
+  "include": [
+    "src/**/*", 
+    "eslint.config.mts" // <--- Добавьте это
+  ]
 }
