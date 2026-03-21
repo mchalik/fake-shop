@@ -10,9 +10,8 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import CachedIcon from '@mui/icons-material/Cached';
 
 import { Search, SearchQueryContext } from '@/features/search';
-
-import { ProductList } from './ProductsList/ProductList';
-import { SearchList } from './SearchList/SearchList';
+import { ProductList } from '@/widgets/productsList/ui/ProductList';
+import { SearchList } from '@/widgets/searchList/ui/SearchList';
 
 import * as styles from './CatalogPage.module.css';
 
