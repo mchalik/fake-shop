@@ -3,9 +3,9 @@ import { useState, type FC } from 'react';
 import { Dialog, Card, CardContent, Typography, TextField, Button, Snackbar, Alert, Box, Link, useMediaQuery, useTheme } from '@mui/material';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
-import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 
+import { useAppForm } from '@/shared/hooks/useAppForm';
 import { type Product } from '@/entities/product';
 
 export const AddProduct: FC = () => {
@@ -18,18 +18,9 @@ export const AddProduct: FC = () => {
   });
   // TODO: вынести в useAppForm
   const {
-    register: registerBase,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<Product>();
-
-  type RegisterParams = Parameters<typeof registerBase>;
-
-  const register = (name: RegisterParams[0], rules?: RegisterParams[1]) => ({
-    ...registerBase(name, rules),
-    error: !!errors[name],
-    helperText: errors[name]?.message?.toString() || ' '
-  });
+    register,
+    handleSubmit
+  } = useAppForm<Product>();
 
   return (
     <>
