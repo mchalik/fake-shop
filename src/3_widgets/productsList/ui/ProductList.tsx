@@ -8,6 +8,7 @@ import {
   useSort,
   SortContext
 } from '@/entities/product';
+import { ProgressBar } from '@/shared/components/ProgressBar';
 
 export const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +24,7 @@ export const ProductList = () => {
 
   return (
     <>
+      <ProgressBar isLoading={isLoadingInUi} />
       <SortContext value={{ sort, onSort }}>
         <ListingTable staleState={isLoadingInUi} data={data} />
       </SortContext>

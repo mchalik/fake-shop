@@ -8,7 +8,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 
-import { SearchQueryContext } from '../../../../5_entities/product/providers/SearchQueryContext';
+import { SearchQueryContext } from '@/entities/product';
 
 export const Search = () => {
   const { searchQuery, setSearchQuery } = useContext(SearchQueryContext);

@@ -14,7 +14,7 @@ export const useSearch = ({ currentPage, sort }: { currentPage: number, sort: So
     searchQuery
   } = useContext(SearchQueryContext);
 
-  const { data, isPlaceholderData, isLoading } = useQuery({
+  const { data, isPlaceholderData, isLoading, dataUpdatedAt } = useQuery({
     queryFn: () => getSearch(searchQuery || '', {
       limit: SEARCH_PAGE_SIZE,
       skip: (currentPage - 1) * SEARCH_PAGE_SIZE,
@@ -25,5 +25,5 @@ export const useSearch = ({ currentPage, sort }: { currentPage: number, sort: So
     placeholderData: (previousData) => previousData ? previousData : placeholderData
   });
 
-  return { data, isPlaceholderData, isLoading };
+  return { data, isPlaceholderData, isLoading, dataUpdatedAt };
 };

@@ -25,8 +25,8 @@ export const UserProvider: FC<PropsWithChildren & { loginForm: ComponentType }> 
 
     },
     enabled: Boolean(token.current),
-    retry: (failureCount: number, error: { cause: { status: number } }) => {
-      if (error.cause.status === 401) {
+    retry: (failureCount: number, error: { cause?: { status: number } }) => {
+      if (error.cause?.status === 401) {
         return false;
       }
 
