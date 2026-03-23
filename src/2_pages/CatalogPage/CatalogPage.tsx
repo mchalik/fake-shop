@@ -8,7 +8,8 @@ import {
 } from '@mui/material';
 import CachedIcon from '@mui/icons-material/Cached';
 
-import { Search, SearchQueryContext } from '@/features/search';
+import { Search } from '@/features/search';
+import { SearchQueryContext } from '@/entities/product';
 import { ProductList } from '@/widgets/productsList/ui/ProductList';
 import { SearchList } from '@/widgets/searchList/ui/SearchList';
 import { AddProduct } from '@/features/addProduct';

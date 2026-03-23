@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Pagination } from '@/widgets/pagination';
-import { useSearch } from '@/features/search';
+import { useSearch } from '@/entities/product';
 import { ListingTable, useSort, SortContext } from '@/entities/product';
 import { ProgressBar } from '@/shared/components/ProgressBar';
 
