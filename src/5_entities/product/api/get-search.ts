@@ -1,4 +1,4 @@
-import { getProductsParams, ProductsResponse, type Product } from '@/entities/product';
+import { type getProductsParams, type ProductsResponse, type Product } from '@/entities/product';
 import { addUrlParams } from '@/shared/utils/addUrlParams';
 
 const selectedProps: Array<keyof Product> = [

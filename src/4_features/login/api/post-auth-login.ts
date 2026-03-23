@@ -1,4 +1,4 @@
-import { LoginFormData, User } from '@/entities/user';
+import { type LoginFormData, type User } from '@/entities/user';
 
 export const postAuthLogin = async ({
   username,

@@ -4,7 +4,7 @@ import {
   Typography
 } from '@mui/material';
 
-import { ProductsResponse } from '@/entities/product';
+import { type ProductsResponse } from '@/entities/product';
 
 const getTotalString = (data?: ProductsResponse) => {
   if (!data) {

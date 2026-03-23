@@ -27,6 +27,16 @@ const importOrderRule: Config['rules'] = {
     ],
     'pathGroups': [
       {
+        'pattern': 'react',
+        'group': 'external',
+        'position': 'before'
+      },
+      {
+        'pattern': '@mui/**',
+        'group': 'external',
+        'position': 'before'
+      },
+      {
         'pattern': '@/**',
         'group': 'internal',
         'position': 'before'
@@ -37,6 +47,7 @@ const importOrderRule: Config['rules'] = {
         'position': 'after'
       }
     ],
+    'pathGroupsExcludedImportTypes': ['react'],
     'newlines-between': ALWAYS
   }]
 };
@@ -93,6 +104,9 @@ export default defineConfig([
       ...importOrderRule,
       ...stylisticRules,
 
+      '@typescript-eslint/consistent-type-imports': [ERROR, {
+        fixStyle: 'inline-type-imports'
+      }],
       'prefer-template': ERROR,
       'indent': [ERROR, 2],
       'semi': [ERROR, ALWAYS],

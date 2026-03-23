@@ -1,6 +1,6 @@
 import { addUrlParams } from '@/shared/utils/addUrlParams';
 
-import { Product, ProductsResponse, GetProductsParams } from '../types/ProductTypes';
+import { type Product, type ProductsResponse, type GetProductsParams } from '../types/ProductTypes';
 
 const selectedProps: Array<keyof Product> = [
   'id',

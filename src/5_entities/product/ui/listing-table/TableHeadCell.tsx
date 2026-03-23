@@ -1,9 +1,11 @@
-import { FC, PropsWithChildren, useContext } from 'react';
-import { match } from 'ts-pattern';
+import { type FC, type PropsWithChildren, useContext } from 'react';
+
 import { TableCell, IconButton } from '@mui/material';
 import { Sort, SwapVert } from '@mui/icons-material';
 
-import { Product } from '../../types/ProductTypes';
+import { match } from 'ts-pattern';
+
+import { type Product } from '../../types/ProductTypes';
 import { SortContext } from '../../providers/SortContext';
 
 export const TableHeadCell: FC<{ prop: keyof Product } & PropsWithChildren> = ({ prop, children }) => {

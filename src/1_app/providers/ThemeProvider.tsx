@@ -1,4 +1,5 @@
-import { FC, PropsWithChildren } from 'react';
+import { type FC, type PropsWithChildren } from 'react';
+
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material';
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {

@@ -1,7 +1,8 @@
 import { useState } from 'react';
+
 import { match } from 'ts-pattern';
 
-import { SortingType } from '../types/ProductTypes';
+import { type SortingType } from '../types/ProductTypes';
 
 const DEFAULT_SORT: SortingType = {
   sortBy: 'id',

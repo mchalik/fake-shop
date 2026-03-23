@@ -1,12 +1,12 @@
 export type Product = {
     id: number,
     title: string,
-    price: number,
     brand: string,
+    category: string,
+    price: number,
     rating: number,
     sku: string,
-    thumbnail: string,
-    category: string
+    thumbnail: string
 }
 
 export type ProductsResponse = {

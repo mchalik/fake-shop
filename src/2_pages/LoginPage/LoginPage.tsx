@@ -1,5 +1,5 @@
 import { useState, useContext, type SubmitEvent, type ReactElement, type SyntheticEvent } from 'react';
-import { z } from 'zod';
+
 import {
   Box,
   Button,
@@ -17,16 +17,13 @@ import {
 } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
+
+import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
 
 import { postAuthLogin } from '@/features/login';
-import { LoginFormData, UserContext } from '@/entities/user';
-
-const names = new Set([
-  'username',
-  'password',
-  'saveLogin'
-]);
+import type { LoginFormData } from '@/entities/user';
+import { UserContext } from '@/entities/user';
 
 const Form = z.object({
   username: z.string().min(1),
@@ -53,7 +50,7 @@ export const LoginPage = () => {
     saveLogin: true
   });
 
-  const mutationPostAuthLogin = useMutation({
+  const authLoginMutation = useMutation({
     mutationFn: postAuthLogin,
     onSuccess: (user, loginProps) => {
       setUser?.(user);
@@ -75,7 +72,7 @@ export const LoginPage = () => {
       return;
     }
 
-    mutationPostAuthLogin.mutate(FormSafeParsed.data);
+    authLoginMutation.mutate(FormSafeParsed.data);
   };
 
   const onChangeSetFormData = ({ target }: SyntheticEvent, checked?: boolean) => {
@@ -163,16 +160,16 @@ export const LoginPage = () => {
               variant="contained"
               size="large"
               fullWidth
-              loading={mutationPostAuthLogin.isPending}
+              loading={authLoginMutation.isPending}
               loadingPosition="start"
               sx={{ mt: 1, textTransform: 'none', fontSize: '16px' }}
             >
                 Войти
             </Button>
             <Snackbar
-              open={mutationPostAuthLogin.isError}
+              open={authLoginMutation.isError}
               autoHideDuration={3000}
-              onClose={() => { mutationPostAuthLogin.reset(); }}
+              onClose={() => { authLoginMutation.reset(); }}
             >
               <Alert
                 severity="error"

@@ -1,10 +1,11 @@
 import { useContext } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 
 import { SEARCH_PAGE_SIZE } from '../constants/productConstans';
-import { SortingType } from '../types/ProductTypes';
 import { SearchQueryContext } from '../providers/SearchQueryContext';
 import { getSearch } from '../api/get-search';
+import { type SortingType } from '../types/ProductTypes';
 
 import { placeholderData } from './useProducts';
 

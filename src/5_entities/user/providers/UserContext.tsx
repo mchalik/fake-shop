@@ -2,10 +2,11 @@ import {
   createContext, useState, useRef,
   type ComponentType, type PropsWithChildren, type FC
 } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import { match, P } from 'ts-pattern';
 
-import { User, getAuthMe } from '@/entities/user';
+import { getAuthMe, type User } from '@/entities/user';
 import { Backdrop } from '@/shared/components/Backdrop';
 
 export const UserContext = createContext<Partial<{

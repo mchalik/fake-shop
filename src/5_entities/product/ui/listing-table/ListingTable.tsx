@@ -2,7 +2,7 @@ import {
   Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography
 } from '@mui/material';
 
-import { ProductsResponse } from '../../types/ProductTypes';
+import { type ProductsResponse } from '../../types/ProductTypes';
 
 import { TableHeadCell } from './TableHeadCell';
 import { Rating } from './Rating';

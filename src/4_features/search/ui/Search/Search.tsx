@@ -1,10 +1,11 @@
+import { useContext } from 'react';
+
 import {
   IconButton,
   InputAdornment,
   TextField
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useContext } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 
 import { SearchQueryContext } from '../../../../5_entities/product/providers/SearchQueryContext';

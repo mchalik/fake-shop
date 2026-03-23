@@ -1,17 +1,17 @@
 import { useState } from 'react';
+
 import {
   Box,
   Container,
   Typography,
-  Button,
   IconButton
 } from '@mui/material';
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import CachedIcon from '@mui/icons-material/Cached';
 
 import { Search, SearchQueryContext } from '@/features/search';
 import { ProductList } from '@/widgets/productsList/ui/ProductList';
 import { SearchList } from '@/widgets/searchList/ui/SearchList';
+import { AddProduct } from '@/features/addProduct';
 
 import * as styles from './CatalogPage.module.css';
 
@@ -37,9 +37,7 @@ export const ProductsPage = () => {
           <IconButton color='inherit' className={styles.reload}>
             <CachedIcon />
           </IconButton>
-          <Button variant="contained" startIcon={<ControlPointIcon />}>
-            Добавить
-          </Button>
+          <AddProduct />
         </div>
       </Box>
 
