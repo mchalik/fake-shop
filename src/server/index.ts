@@ -37,11 +37,14 @@ const server = http.createServer((clientReq, clientRes) => {
 
     // CORS заголовки (на случай, если вы обращаетесь с другого порта/домена)
     const origin = clientReq.headers.origin || '*';
+
     clientRes.setHeader('Access-Control-Allow-Origin', origin);
     clientRes.setHeader('Access-Control-Allow-Credentials', 'true');
 
     const body = [];
-    clientReq.on('data', chunk => body.push(chunk))
+
+    clientReq
+      .on('data', chunk => body.push(chunk))
       .on('end', () => {
         const bodyString = Buffer.concat(body).toString();
 
@@ -70,18 +73,21 @@ const server = http.createServer((clientReq, clientRes) => {
         proxyReq.write(bodyString);
         proxyReq.end();
       });
+
     return;
   }
 
   // === 2. ОБРАБОТКА OPTIONS (PREFLIGHT) ===
   if (clientReq.method === 'OPTIONS') {
     const origin = clientReq.headers.origin || '*';
+
     clientRes.setHeader('Access-Control-Allow-Origin', origin);
     clientRes.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     clientRes.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     clientRes.setHeader('Access-Control-Allow-Credentials', 'true');
     clientRes.writeHead(204);
     clientRes.end();
+
     return;
   }
 

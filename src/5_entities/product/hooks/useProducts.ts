@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { getProducts } from '../api/get-products';
-import { PRODUCTS_PAGE_SIZE } from '../constants/productConstans';
+import { PRODUCTS_QUERY_KEY, PRODUCTS_PAGE_SIZE } from '../constants/productConstans';
 import { type SortingType, type Product } from '../types/ProductTypes';
 
 const emptyProduct: Product= {
@@ -28,9 +28,9 @@ export let placeholderData = {
 export const useProducts = ({ currentPage, sort }: { currentPage: number, sort: SortingType }) => {
   const {
     data,
-    isPlaceholderData
+    isFetching
   } = useQuery({
-    queryKey: ['products', currentPage, sort],
+    queryKey: [PRODUCTS_QUERY_KEY, currentPage, sort],
     queryFn: () => getProducts({
       limit: PRODUCTS_PAGE_SIZE,
       skip: (currentPage - 1) * PRODUCTS_PAGE_SIZE,
@@ -45,6 +45,6 @@ export const useProducts = ({ currentPage, sort }: { currentPage: number, sort: 
 
   return {
     data,
-    isPlaceholderData
+    isFetching
   };
 };

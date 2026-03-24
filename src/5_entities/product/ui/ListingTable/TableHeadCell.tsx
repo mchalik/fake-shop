@@ -5,10 +5,18 @@ import { Sort, SwapVert } from '@mui/icons-material';
 
 import { match } from 'ts-pattern';
 
-import { type Product } from '../../types/ProductTypes';
 import { SortContext } from '../../providers/SortContext';
+import { type Product } from '../../types/ProductTypes';
 
-export const TableHeadCell: FC<{ prop: keyof Product } & PropsWithChildren> = ({ prop, children }) => {
+export const TableHeadCell: FC<{
+  prop: keyof Product,
+  textAlign?: 'left' | 'center' }
+  & PropsWithChildren
+> = ({
+  prop,
+  children,
+  textAlign
+}) => {
   const { sort, onSort } = useContext(SortContext);
   const icon = match(sort)
     .with({ sortBy: prop, order: 'asc' }, () => <Sort fontSize='inherit' />)
@@ -16,7 +24,14 @@ export const TableHeadCell: FC<{ prop: keyof Product } & PropsWithChildren> = ({
     .otherwise(() => (<SwapVert fontSize='inherit' />));
 
   return (
-    <TableCell sx={{ color: 'inherit', whiteSpace: 'nowrap' }} onClick={() => onSort?.(prop)}>
+    <TableCell
+      sx={{
+        color: 'inherit',
+        whiteSpace: 'nowrap',
+        textAlign: textAlign || 'center' }
+      }
+      onClick={() => onSort?.(prop)}
+    >
       {children} <IconButton size='small'>{icon}</IconButton>
     </TableCell>
   );

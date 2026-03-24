@@ -3,18 +3,15 @@ import { useState } from 'react';
 import {
   Box,
   Container,
-  Typography,
-  IconButton
+  Typography
 } from '@mui/material';
-import CachedIcon from '@mui/icons-material/Cached';
 
 import { Search } from '@/features/search';
 import { SearchQueryContext } from '@/entities/product';
 import { ProductList } from '@/widgets/productsList/ui/ProductList';
 import { SearchList } from '@/widgets/searchList/ui/SearchList';
 import { AddProduct } from '@/features/addProduct';
-
-import * as styles from './CatalogPage.module.css';
+import { InvalidateCacheButton } from '@/features/invalidateCache';
 
 export const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -35,9 +32,7 @@ export const ProductsPage = () => {
           Все позиции {searchQuery ? `- ${ searchQuery }` : ''}
         </Typography>
         <div>
-          <IconButton color='inherit' className={styles.reload}>
-            <CachedIcon />
-          </IconButton>
+          <InvalidateCacheButton />
           <AddProduct />
         </div>
       </Box>

@@ -6,52 +6,35 @@ import {
 
 import { type ProductsResponse } from '@/entities/product';
 
-const getTotalString = (data?: ProductsResponse) => {
-  if (!data) {
-    return '';
-  }
-
-  if (data.total < 2) {
-    return data.total;
-  }
-
-  if (data.total < 5) {
-    return `1 - ${ data.total }`;
-  }
-
-  const start = data.skip + 1;
-  const end = data.skip + data.limit;
-
-  return `${ start } - ${ end }`;
-};
+import { getCurrentItemIndexes } from '../helpers/getCurrentItemIndexes';
 
 export const Pagination = ({
-  data,
+  itemsMeta: {
+    total,
+    skip,
+    limit
+  },
   currentPage,
   setCurrentPage,
-  pagesTotal
+  isFetching
 }: {
-  data: ProductsResponse | undefined,
+  itemsMeta: ProductsResponse,
   currentPage: number,
   setCurrentPage: (page: number) => void,
-  pagesTotal: number
+  isFetching: boolean
 }) => {
-  if (!data) {
-    return null;
-  }
-
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-      <Typography variant="body2" color="text.secondary">
-        Показано {getTotalString(data)} из {data?.total}
+      <Typography variant="body2" color="text.secondary" sx={{ opacity: isFetching ? 0.3 : 1 }} >
+        Показано {getCurrentItemIndexes({ total, skip, limit })} из {total}
       </Typography>
 
-      {data && data.total > 5 && (
+      {total > limit && (
         <MuiPagination
-          count={pagesTotal}
           color="primary"
           shape="rounded"
           page={currentPage}
+          count={Math.ceil(total / limit)}
           onChange={(_, page) => setCurrentPage(page)}
         />
       )}

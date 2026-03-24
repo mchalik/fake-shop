@@ -19,7 +19,7 @@ export const UserProvider: FC<PropsWithChildren & { loginForm: ComponentType }> 
   const token = useRef(localStorage.getItem('ACCESS_TOKEN') || sessionStorage.getItem('ACCESS_TOKEN'));
 
   const { data: initialUser, isLoading } = useQuery({
-    queryKey: [],
+    queryKey: ['user'],
     queryFn: () => {
       return getAuthMe(token.current!);
 

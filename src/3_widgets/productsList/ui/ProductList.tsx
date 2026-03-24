@@ -4,7 +4,6 @@ import { Pagination } from '@/widgets/pagination';
 import {
   ListingTable,
   useProducts,
-  PRODUCTS_PAGE_SIZE,
   useSort,
   SortContext
 } from '@/entities/product';
@@ -14,25 +13,22 @@ export const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { sort, onSort } = useSort();
 
-  const { isPlaceholderData, data } = useProducts({
+  const { isFetching, data } = useProducts({
     currentPage,
     sort
   });
 
-  const isLoadingInUi = isPlaceholderData;
-  const pagesTotal = data ? Math.ceil(data?.total / PRODUCTS_PAGE_SIZE) : 0;
-
   return (
     <>
-      <ProgressBar isLoading={isLoadingInUi} key={currentPage + sort.sortBy + sort.order} />
+      <ProgressBar isLoading={isFetching} key={currentPage + sort.sortBy + sort.order} />
       <SortContext value={{ sort, onSort }}>
-        <ListingTable staleState={isLoadingInUi} data={data} />
+        <ListingTable isFetching={isFetching} data={data} />
       </SortContext>
       <Pagination
+        isFetching={isFetching}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        data={data}
-        pagesTotal={pagesTotal}
+        itemsMeta={data!}
       />
     </>
   );

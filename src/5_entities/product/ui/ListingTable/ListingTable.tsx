@@ -10,25 +10,32 @@ import { Rating } from './Rating';
 import * as styles from './ListingTable.module.css';
 
 export const ListingTable = ({
-  staleState: isPlaceholderData,
+  isFetching,
   data
 }: {
     data: ProductsResponse | undefined,
-    staleState: boolean
+    isFetching: boolean
 }) => {
   return (
-    <TableContainer component={Paper} sx={{ boxShadow: 3, borderRadius: 2 }}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer component={Paper} sx={{ boxShadow: 0, borderRadius: 2 }}>
+      <Table sx={{ minWidth: 650, tableLayout: 'fixed' }} aria-label="simple table">
+        <colgroup>
+          <col />
+          <col className={styles.sameCols} />
+          <col className={styles.sameCols} />
+          <col className={styles.sameCols} />
+          <col className={styles.sameCols} />
+        </colgroup>
         <TableHead>
           <TableRow sx={{ color: '#B2B3B9' }}>
-            <TableHeadCell prop="title">Наименование</TableHeadCell>
+            <TableHeadCell prop="title" textAlign="left">Наименование</TableHeadCell>
             <TableHeadCell prop="brand">Вендер</TableHeadCell>
             <TableHeadCell prop="sku">Артикул</TableHeadCell>
             <TableHeadCell prop="rating">Оценка</TableHeadCell>
             <TableHeadCell prop="price">Цена, ₽</TableHeadCell>
           </TableRow>
         </TableHead>
-        <TableBody style={{ opacity: isPlaceholderData ? 0.4 : 1 }}>
+        <TableBody style={{ opacity: isFetching ? 0.3 : 1 }}>
           {data?.products.map((product) => (
             <TableRow
               key={product.id}

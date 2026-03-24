@@ -6,8 +6,6 @@ import { ProductsPage } from '@/pages/CatalogPage';
 
 import { ThemeProvider } from './providers/ThemeProvider';
 
-// --- ГЛАВНЫЙ КОМПОНЕНТ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ---
-// В реальном приложении у вас будет React Router
 export default function App() {
   const queryClient = new QueryClient();
 

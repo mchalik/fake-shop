@@ -28,20 +28,20 @@ const getAliases = (folders: string[]) => {
 export default defineConfig({
   context: __dirname,
   entry: {
-    main: './src/index.tsx',
+    main: './src/index.tsx'
   },
   resolve: {
     extensions: ['...', '.ts', '.tsx', '.jsx'],
     alias: {
       // '@': path.resolve(__dirname, 'src'),
       ...getAliases(['app', 'pages', 'widgets', 'features', 'entities', 'shared'])
-    },
+    }
   },
   module: {
     rules: [
       {
         test: /\.svg$/,
-        type: 'asset',
+        type: 'asset'
       },
       {
         test: /\.(jsx?|tsx?)$/,
@@ -53,27 +53,27 @@ export default defineConfig({
               jsc: {
                 parser: {
                   syntax: 'typescript',
-                  tsx: true,
+                  tsx: true
                 },
                 transform: {
                   react: {
                     runtime: 'automatic',
                     development: isDev,
-                    refresh: isDev,
-                  },
-                },
+                    refresh: isDev
+                  }
+                }
               },
-              env: { targets },
-            },
-          },
-        ],
+              env: { targets }
+            }
+          }
+        ]
       },
       {
         test: /\.module\.css$/,
         type: 'css/module',
         generator: {
-          localIdentName: '[local]_[hash:base64:5]',
-        },
+          localIdentName: '[local]_[hash:base64:5]'
+        }
       },
       {
         test: /\.css$/,
@@ -81,26 +81,26 @@ export default defineConfig({
         type: 'css',
         use: [
           {
-            loader: 'postcss-loader',
+            loader: 'postcss-loader'
           }
-        ],
-      },
+        ]
+      }
     ],
     parser: {
       'css/auto': {
-        namedExports: false,
-      },
+        namedExports: false
+      }
     }
   },
   plugins: [
     new rspack.HtmlRspackPlugin({
-      template: './src/index.html',
+      template: './src/index.html'
     }),
     new ForkTsCheckerWebpackPlugin({
       logger: {
         log: () => {}, // игнорируем обычные сообщения ("Type-checking in progress")
 
-        error: (message) => { console.error(message); }, // выводим только ошибки
+        error: (message) => { console.error(message); } // выводим только ошибки
       },
       typescript: {
         memoryLimit: 4096, // Лимит памяти для TS сервера (в МБ)
@@ -111,19 +111,19 @@ export default defineConfig({
             // strict: true
           }
         }
-      },
+      }
     }),
-    isDev ? new ReactRefreshRspackPlugin() : null,
+    isDev ? new ReactRefreshRspackPlugin() : null
   ],
   optimization: {
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin(),
       new rspack.LightningCssMinimizerRspackPlugin({
-        minimizerOptions: { targets },
-      }),
-    ],
+        minimizerOptions: { targets }
+      })
+    ]
   },
   experiments: {
-    css: true,
-  },
+    css: true
+  }
 });

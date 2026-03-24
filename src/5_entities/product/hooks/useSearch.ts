@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { SEARCH_PAGE_SIZE } from '../constants/productConstans';
+import { SEARCH_PAGE_SIZE, SEARCH_QUERY_KEY } from '../constants/productConstans';
 import { SearchQueryContext } from '../providers/SearchQueryContext';
 import { getSearch } from '../api/get-search';
 import { type SortingType } from '../types/ProductTypes';
@@ -14,16 +14,16 @@ export const useSearch = ({ currentPage, sort }: { currentPage: number, sort: So
     searchQuery
   } = useContext(SearchQueryContext);
 
-  const { data, isPlaceholderData, isLoading, dataUpdatedAt } = useQuery({
+  const { data, isFetching } = useQuery({
     queryFn: () => getSearch(searchQuery || '', {
       limit: SEARCH_PAGE_SIZE,
       skip: (currentPage - 1) * SEARCH_PAGE_SIZE,
       ...sort
     }),
-    queryKey: ['searchProducts', searchQuery, currentPage, sort],
+    queryKey: [SEARCH_QUERY_KEY, searchQuery, currentPage, sort],
     enabled: Boolean(searchQuery),
     placeholderData: (previousData) => previousData ? previousData : placeholderData
   });
 
-  return { data, isPlaceholderData, isLoading, dataUpdatedAt };
+  return { data, isFetching };
 };
