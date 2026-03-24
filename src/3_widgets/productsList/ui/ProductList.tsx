@@ -24,7 +24,7 @@ export const ProductList = () => {
 
   return (
     <>
-      <ProgressBar isLoading={isLoadingInUi} />
+      <ProgressBar isLoading={isLoadingInUi} key={currentPage + sort.sortBy + sort.order} />
       <SortContext value={{ sort, onSort }}>
         <ListingTable staleState={isLoadingInUi} data={data} />
       </SortContext>

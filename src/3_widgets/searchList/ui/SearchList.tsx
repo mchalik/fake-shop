@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
 import { Pagination } from '@/widgets/pagination';
-import { useSearch } from '@/entities/product';
-import { ListingTable, useSort, SortContext } from '@/entities/product';
+import { ListingTable, useSort, SortContext, useSearch } from '@/entities/product';
 import { ProgressBar } from '@/shared/components/ProgressBar';
 
 const PAGE_SIZE = 5;
@@ -22,7 +21,7 @@ export const SearchList = () => {
 
   return (
     <>
-      <ProgressBar isLoading={isLoadingInUi} />
+      <ProgressBar isLoading={isLoadingInUi} key={currentPage + sort.sortBy + sort.order} />
       <SortContext value={{ sort, onSort }}>
         <ListingTable staleState={isLoadingInUi} data={data} />
       </SortContext>

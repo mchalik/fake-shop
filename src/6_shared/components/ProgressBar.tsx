@@ -10,8 +10,7 @@ const STEP = 1;
 export const ProgressBar = ({ isLoading }: { isLoading: boolean }) => {
   const [show, setShow] = useState(isLoading);
   const [percent, setPercent] = useState(MIN);
-  const realPercent = isLoading ? 0 : 100;
-  const showPercent = realPercent || percent;
+  const showPercent = isLoading ? percent : 100;
 
   useEffect(() => {
     if (!isLoading) {
