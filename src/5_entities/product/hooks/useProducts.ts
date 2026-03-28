@@ -18,17 +18,22 @@ const emptyProduct: Product= {
 export let placeholderData = {
   products: Array.from(
     { length: 5 },
-    (_, index) => ({ ...emptyProduct, id: -index })
+    (_, index) => ({
+      ...emptyProduct,
+      id: -index
+    })
   ),
   total: 0,
   limit: 0,
   skip: 0
 };
 
-export const useProducts = ({ currentPage, sort }: { currentPage: number, sort: SortingType }) => {
+export const useProducts = ({ currentPage, sort }: { currentPage: number,
+sort: SortingType }) => {
   const {
     data,
-    isFetching
+    isFetching,
+    isPlaceholderData
   } = useQuery({
     queryKey: [PRODUCTS_QUERY_KEY, currentPage, sort],
     queryFn: () => getProducts({
@@ -45,6 +50,6 @@ export const useProducts = ({ currentPage, sort }: { currentPage: number, sort: 
 
   return {
     data,
-    isFetching
+    isLoading: isPlaceholderData || isFetching
   };
 };

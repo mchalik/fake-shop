@@ -1,7 +1,9 @@
 export const getCurrentItemIndexes = ({
   total, skip, limit
 }: {
-   total: number, skip: number, limit: number
+  total: number,
+  skip: number,
+  limit: number
 }) => {
   if (total < 2) {
     return total;

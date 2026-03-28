@@ -22,14 +22,23 @@ export const Search = () => {
       fullWidth
       variant="outlined"
       size="small"
-      placeholder="Поиск..."
+      placeholder="Найти"
+      sx={{
+        pl: 4
+      }}
       InputProps={{
+
+        sx: {
+          maxWIdth: 1024,
+          fontSize: '0.8rem',
+          backgroundColor: '#F3F3F3'
+        },
         startAdornment: (
           <InputAdornment position="start">
             <SearchIcon />
           </InputAdornment>
         ),
-        endAdornment: (
+        endAdornment: !!searchQuery && (
           <InputAdornment position="end" >
             <IconButton
               onClick={() => setSearchQuery?.('')}
@@ -43,4 +52,3 @@ export const Search = () => {
     />
   );
 };
-

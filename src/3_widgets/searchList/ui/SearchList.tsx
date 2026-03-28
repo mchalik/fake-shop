@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 import { Pagination } from '@/widgets/pagination';
-import { ListingTable, useSort, SortContext, useSearch } from '@/entities/product';
+import {
+  ListingTable, useSort, SortContext, useSearch, SEARCH_PAGE_SIZE
+} from '@/entities/product';
 import { ProgressBar } from '@/shared/components/ProgressBar';
 
 export const SearchList = () => {
@@ -9,19 +11,26 @@ export const SearchList = () => {
   const { sort, onSort } = useSort();
 
   const {
-    isFetching,
+    isLoading,
     data
-  } = useSearch({ currentPage, sort });
+  } = useSearch({
+    currentPage,
+    sort
+  });
 
   return (
     <>
-      <ProgressBar isLoading={isFetching} key={currentPage + sort.sortBy + sort.order} />
-      <SortContext value={{ sort, onSort }}>
-        <ListingTable isFetching={isFetching} data={data} />
+      <ProgressBar isLoading={isLoading} key={currentPage + sort.sortBy + sort.order} />
+      <SortContext value={{
+        sort,
+        onSort
+      }}>
+        <ListingTable isFetching={isLoading} data={data!} />
       </SortContext>
       <Pagination
-        isFetching={isFetching}
+        isLoading={isLoading}
         currentPage={currentPage}
+        pageSize={SEARCH_PAGE_SIZE}
         setCurrentPage={setCurrentPage}
         itemsMeta={data!}
       />

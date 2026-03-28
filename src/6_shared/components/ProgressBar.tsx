@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { Box, LinearProgress, Slide } from '@mui/material';
+import {
+  Box, LinearProgress, Slide
+} from '@mui/material';
 
 const MIN = 15;
 const MAX = 85;

@@ -6,7 +6,9 @@ export { getSearch } from './api/get-search';
 export { useProducts, placeholderData } from './hooks/useProducts';
 export { useSort } from './hooks/useSort';
 export { useSearch } from './hooks/useSearch';
-export { PRODUCTS_PAGE_SIZE, ITEMS_QUERY_KEYS } from './constants/productConstans';
+export {
+  PRODUCTS_PAGE_SIZE, SEARCH_PAGE_SIZE, ITEMS_QUERY_KEYS
+} from './constants/productConstans';
 
 export type {
   Product,

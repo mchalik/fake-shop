@@ -63,7 +63,30 @@ const stylisticRules: Config['rules'] = {
     'arraysInObjects': true,
     'objectsInObjects': true
   }],
-  '@stylistic/no-multi-spaces': ERROR
+  '@stylistic/no-multi-spaces': ERROR,
+  '@stylistic/object-property-newline': ERROR,
+  '@stylistic/object-curly-newline': [ERROR, {
+    'ObjectExpression': {
+      'minProperties': 3,
+      'multiline': true,
+      'consistent': true
+    },
+    'ObjectPattern': {
+      'minProperties': 3,
+      'multiline': true,
+      'consistent': true
+    },
+    'ImportDeclaration': {
+      'minProperties': 3,
+      'multiline': true,
+      'consistent': true
+    },
+    'ExportDeclaration': {
+      'minProperties': 3,
+      'multiline': true,
+      'consistent': true
+    }
+  }]
 };
 
 export default defineConfig([
@@ -107,6 +130,17 @@ export default defineConfig([
       '@typescript-eslint/consistent-type-imports': [ERROR, {
         fixStyle: 'inline-type-imports'
       }],
+      '@typescript-eslint/no-unused-vars': [
+        'error', {
+          'args': 'all',
+          'argsIgnorePattern': '^_',
+          'caughtErrors': 'all',
+          'caughtErrorsIgnorePattern': '^_',
+          'destructuredArrayIgnorePattern': '^_',
+          'varsIgnorePattern': '^_',
+          'ignoreRestSiblings': true
+        }
+      ],
       'prefer-template': ERROR,
       'indent': [ERROR, 2],
       'semi': [ERROR, ALWAYS],

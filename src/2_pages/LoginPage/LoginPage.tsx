@@ -28,7 +28,11 @@ export const LoginPage = () => {
           boxShadow: 3
         }}
       >
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <CardContent sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2
+        }}>
           <Typography variant="h5" component="h1" align="center" fontWeight="bold">
             Добро пожаловать!
           </Typography>
@@ -38,7 +42,10 @@ export const LoginPage = () => {
 
           <LoginForm />
 
-          <Box sx={{ textAlign: 'center', mt: 2 }}>
+          <Box sx={{
+            textAlign: 'center',
+            mt: 2
+          }}>
             <Link href="#" variant="body2" underline="hover">
               Нет аккаунта? Создать
             </Link>

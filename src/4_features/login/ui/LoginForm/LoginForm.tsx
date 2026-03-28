@@ -1,7 +1,11 @@
-import { useContext, useState, type ReactElement, type SyntheticEvent, type SubmitEvent } from 'react';
+import {
+  useContext, useState, type ReactElement, type SyntheticEvent, type SubmitEvent
+} from 'react';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { TextField, InputAdornment, IconButton, FormControlLabel, Checkbox, Button, Snackbar, Alert } from '@mui/material';
+import {
+  TextField, InputAdornment, IconButton, FormControlLabel, Checkbox, Button, Snackbar, Alert
+} from '@mui/material';
 
 import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
@@ -72,7 +76,11 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+    <form onSubmit={onSubmit} style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 16
+    }}>
       <TextField
         required
         label="Почта"
@@ -122,7 +130,11 @@ export const LoginForm = () => {
         fullWidth
         loading={authLoginMutation.isPending}
         loadingPosition="start"
-        sx={{ mt: 1, textTransform: 'none', fontSize: '16px' }}
+        sx={{
+          mt: 1,
+          textTransform: 'none',
+          fontSize: '16px'
+        }}
       >
                 Войти
       </Button>

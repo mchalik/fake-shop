@@ -1,6 +1,7 @@
 @import-normalize "normalize/opinionated.css";
 
 body {
+  background-color: #F6F6F6;
   font-family: "Google Sans Flex", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;

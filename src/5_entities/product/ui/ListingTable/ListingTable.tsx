@@ -13,12 +13,18 @@ export const ListingTable = ({
   isFetching,
   data
 }: {
-    data: ProductsResponse | undefined,
+    data: ProductsResponse,
     isFetching: boolean
 }) => {
   return (
-    <TableContainer component={Paper} sx={{ boxShadow: 0, borderRadius: 2 }}>
-      <Table sx={{ minWidth: 650, tableLayout: 'fixed' }} aria-label="simple table">
+    <TableContainer component={Paper} sx={{
+      boxShadow: 0,
+      borderRadius: 2
+    }}>
+      <Table sx={{
+        minWidth: 650,
+        tableLayout: 'fixed'
+      }} aria-label="simple table">
         <colgroup>
           <col />
           <col className={styles.sameCols} />
@@ -36,7 +42,7 @@ export const ListingTable = ({
           </TableRow>
         </TableHead>
         <TableBody style={{ opacity: isFetching ? 0.3 : 1 }}>
-          {data?.products.map((product) => (
+          {data.products.map((product) => (
             <TableRow
               key={product.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -45,11 +51,14 @@ export const ListingTable = ({
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ display: 'flex', alignItems: 'center' }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
               >
                 <img src={product.thumbnail} alt={product.title} className={styles.image} />
                 <div>
-                  <div>{product.title}</div>
+                  <div className={styles.title}>{product.title}</div>
                   <div className={styles.rowCategory}>{product.category}</div>
                 </div>
               </TableCell>
@@ -61,7 +70,10 @@ export const ListingTable = ({
                 <Typography variant="body2"><Rating value={product.rating} /></Typography>
               </TableCell>
               <TableCell sx={{ fontFamily: 'Roboto Mono' }} align="center">
-                {new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(product.price)}
+                {new Intl.NumberFormat('ru-RU', {
+                  style: 'currency',
+                  currency: 'RUB'
+                }).format(product.price)}
               </TableCell>
             </TableRow>
           ))}

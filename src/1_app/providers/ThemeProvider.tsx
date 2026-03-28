@@ -9,6 +9,15 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
         main: '#797FEA'
       }
     },
+    components: {
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            fontSize: '1rem' // Set the default font size for all TableCell components
+          }
+        }
+      }
+    },
     typography: {
       fontFamily: [
         'Google Sans Flex',

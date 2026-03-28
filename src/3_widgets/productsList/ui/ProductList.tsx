@@ -5,7 +5,8 @@ import {
   ListingTable,
   useProducts,
   useSort,
-  SortContext
+  SortContext,
+  PRODUCTS_PAGE_SIZE
 } from '@/entities/product';
 import { ProgressBar } from '@/shared/components/ProgressBar';
 
@@ -13,20 +14,24 @@ export const ProductList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { sort, onSort } = useSort();
 
-  const { isFetching, data } = useProducts({
+  const { isLoading, data } = useProducts({
     currentPage,
     sort
   });
 
   return (
     <>
-      <ProgressBar isLoading={isFetching} key={currentPage + sort.sortBy + sort.order} />
-      <SortContext value={{ sort, onSort }}>
-        <ListingTable isFetching={isFetching} data={data} />
+      <ProgressBar isLoading={isLoading} key={currentPage + sort.sortBy + sort.order} />
+      <SortContext value={{
+        sort,
+        onSort
+      }}>
+        <ListingTable isFetching={isLoading} data={data!} />
       </SortContext>
       <Pagination
-        isFetching={isFetching}
+        isLoading={isLoading}
         currentPage={currentPage}
+        pageSize={PRODUCTS_PAGE_SIZE}
         setCurrentPage={setCurrentPage}
         itemsMeta={data!}
       />

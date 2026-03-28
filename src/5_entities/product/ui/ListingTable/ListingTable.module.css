@@ -4,13 +4,14 @@
     margin-right: 18px;
 }
 
-.rowBold {
+.title, .rowBold {
     font-weight: 500;
     color: #161919;
 }
 
 .rowCategory {
     color: #B2B3B9;
+    font-weight: 500;
 }
 
 .sameCols {

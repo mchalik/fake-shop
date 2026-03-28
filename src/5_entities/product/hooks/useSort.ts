@@ -14,20 +14,29 @@ export const useSort = () => {
 
   const onSort = (value: SortingType['sortBy']) => {
     const result = match(sort)
-      .with({ sortBy: value, order: 'asc' }, () => ({
-        sortBy: value, order: 'desc'
+      .with({
+        sortBy: value,
+        order: 'asc'
+      }, () => ({
+        sortBy: value,
+        order: 'desc'
       } as SortingType))
-      .with({ sortBy: value, order: 'desc' }, () => ({
+      .with({
+        sortBy: value,
+        order: 'desc'
+      }, () => ({
         ...DEFAULT_SORT
       }))
       .otherwise(() => ({
-        sortBy: value, order: 'asc'
+        sortBy: value,
+        order: 'asc'
       } as SortingType));
 
     setSort(result);
   };
 
   return {
-    sort, onSort
+    sort,
+    onSort
   };
 };

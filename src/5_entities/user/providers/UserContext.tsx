@@ -37,8 +37,14 @@ export const UserProvider: FC<PropsWithChildren & { loginForm: ComponentType }> 
   const user = userUpdated || initialUser;
 
   return (
-    <UserContext value={{ user, setUser }}>
-      {match({ isLoading, user })
+    <UserContext value={{
+      user,
+      setUser
+    }}>
+      {match({
+        isLoading,
+        user
+      })
         .with({ isLoading: true }, () => <Backdrop />)
         .with({ user: P.nullish }, () => <LoginForm />)
         .otherwise(() => children)
