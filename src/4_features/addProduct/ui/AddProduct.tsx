@@ -1,7 +1,7 @@
 import { useState, type FC } from 'react';
 
 import {
-  Dialog, Card, CardContent, Typography, TextField, Button, Snackbar, Alert, Box, Link, useMediaQuery, useTheme
+  Dialog, Card, CardContent, Typography, TextField, Button, Snackbar, Alert, useMediaQuery, useTheme
 } from '@mui/material';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
