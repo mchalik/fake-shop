@@ -15,26 +15,43 @@ export const Pagination = ({
     limit
   },
   currentPage,
+  pageSize,
   setCurrentPage,
-  isFetching
+  isLoading
 }: {
   itemsMeta: ProductsResponse,
   currentPage: number,
+  pageSize: number,
   setCurrentPage: (page: number) => void,
-  isFetching: boolean
+  isLoading: boolean
 }) => {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-      <Typography variant="body2" color="text.secondary" sx={{ opacity: isFetching ? 0.3 : 1 }} >
-        Показано {getCurrentItemIndexes({ total, skip, limit })} из {total}
+    <Box sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      p: 2,
+      flexWrap: 'wrap',
+      gap: 2
+    }}>
+      <Typography variant="body2" color="#969B9F" sx={{
+        opacity: isLoading ? 0.3 : 1,
+        fontSize: '18px'
+      }} >
+        Показано{' '}<span style={{ color: '#333333' }}>{getCurrentItemIndexes({
+          total,
+          skip,
+          limit
+        })}</span>{' '}из{' '}<span style={{ color: '#333333' }}>{total}</span>
       </Typography>
 
       {total > limit && (
         <MuiPagination
           color="primary"
           shape="rounded"
+          sx={{ ml: 'auto' }}
           page={currentPage}
-          count={Math.ceil(total / limit)}
+          count={Math.ceil(total / pageSize)}
           onChange={(_, page) => setCurrentPage(page)}
         />
       )}

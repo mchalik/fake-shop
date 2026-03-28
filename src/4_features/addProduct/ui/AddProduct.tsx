@@ -1,6 +1,8 @@
 import { useState, type FC } from 'react';
 
-import { Dialog, Card, CardContent, Typography, TextField, Button, Snackbar, Alert, Box, Link, useMediaQuery, useTheme } from '@mui/material';
+import {
+  Dialog, Card, CardContent, Typography, TextField, Button, Snackbar, Alert, Box, Link, useMediaQuery, useTheme
+} from '@mui/material';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 import { useMutation } from '@tanstack/react-query';
@@ -13,10 +15,8 @@ export const AddProduct: FC = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const [open, setOpen] = useState(false);
   const postProductMutation = useMutation({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     mutationFn: (_product: Product) => new Promise((resolve) => { resolve(true); })
   });
-  // TODO: вынести в useAppForm
   const {
     register,
     handleSubmit
@@ -36,12 +36,20 @@ export const AddProduct: FC = () => {
             boxShadow: 3
           }}
         >
-          <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <CardContent sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2
+          }}>
             <Typography variant="h5" component="h1" align="center" fontWeight="bold" sx={{ mb: 1 }}>
             Добавьте товар
             </Typography>
 
-            <form onSubmit={handleSubmit((data) => postProductMutation.mutate(data))} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <form onSubmit={handleSubmit((data) => postProductMutation.mutate(data))} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8
+            }}>
               <TextField
                 type="input"
                 variant="outlined"
@@ -65,7 +73,8 @@ export const AddProduct: FC = () => {
                   maxLength: {
                     value: 128,
                     message: 'Значение больше 128 символов'
-                  } })}
+                  }
+                })}
               />
               <TextField
                 label="Категория"
@@ -77,7 +86,8 @@ export const AddProduct: FC = () => {
                   maxLength: {
                     value: 128,
                     message: 'Значение больше 128 символов'
-                  } })}
+                  }
+                })}
               />
               <TextField
                 label="Цена"
@@ -89,7 +99,8 @@ export const AddProduct: FC = () => {
                   maxLength: {
                     value: 128,
                     message: 'Значение больше 128 символов'
-                  } })}
+                  }
+                })}
               />
               <TextField
                 label="Рейтинг"
@@ -97,7 +108,19 @@ export const AddProduct: FC = () => {
                 variant="outlined"
                 fullWidth
                 {...register('rating', {
-                  required: 'Поле не может быть пустым', min: '0.00', max: '5.00'
+                  required: 'Поле не может быть пустым',
+                  maxLength: {
+                    value: 4,
+                    message: 'Значение должно быть в формате 1.XX'
+                  },
+                  min: {
+                    value: 1,
+                    message: 'Значение меньше 1'
+                  },
+                  max: {
+                    value: 5,
+                    message: 'Значение больше 5'
+                  }
                 })}
               />
               <TextField
@@ -118,34 +141,30 @@ export const AddProduct: FC = () => {
                 variant="contained"
                 size="large"
                 fullWidth
-                // loading={mutationPostAuthLogin.isPending}
+                loading={postProductMutation.isPending}
                 loadingPosition="start"
-                sx={{ mt: 1, textTransform: 'none', fontSize: '16px' }}
+                sx={{
+                  mt: 1,
+                  textTransform: 'none',
+                  fontSize: '16px'
+                }}
               >
-                Войти
+                Добавить
               </Button>
               <Snackbar
-                open={false}
+                open={postProductMutation.isSuccess}
                 autoHideDuration={3000}
-              // onClose={() => { mutationPostAuthLogin.reset(); }}
+                onClose={() => { postProductMutation.reset(); }}
               >
                 <Alert
                   severity="success"
                   variant="filled"
                   sx={{ width: '100%' }}
                 >
-                Неверный логин или пароль
+                Товар успешно добавлен
                 </Alert>
               </Snackbar>
-              {/* {JSON.stringify(errors)} */}
-
             </form>
-
-            <Box sx={{ textAlign: 'center', mt: 2 }}>
-              <Link href="#" variant="body2" underline="hover">
-              Нет аккаунта? Создать
-              </Link>
-            </Box>
           </CardContent>
         </Card>
       </Dialog>
