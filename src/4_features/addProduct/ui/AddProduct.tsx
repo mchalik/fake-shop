@@ -1,9 +1,11 @@
 import { useState, type FC } from 'react';
 
 import {
-  Dialog, Card, CardContent, Typography, TextField, Button, Snackbar, Alert, useMediaQuery, useTheme
+  Dialog, Card, CardContent, Typography, TextField, Button, Snackbar, Alert, useMediaQuery, useTheme,
+  IconButton
 } from '@mui/material';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { useMutation } from '@tanstack/react-query';
 
@@ -14,20 +16,38 @@ export const AddProduct: FC = () => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const [open, setOpen] = useState(false);
-  const postProductMutation = useMutation({
-    mutationFn: (_product: Product) => new Promise((resolve) => { resolve(true); })
-  });
+  const toggleOpen = () => setOpen(value => !value);
   const {
     register,
-    handleSubmit
+    handleSubmit,
+    reset
   } = useAppForm<Product>();
+  const postProductMutation = useMutation({
+    mutationFn: (_product: Product) => new Promise((resolve) => { resolve(true); }),
+    onSuccess: () => {
+      setOpen(false);
+      reset();
+    }
+  });
 
   return (
     <>
-      <Button variant="contained" startIcon={<ControlPointIcon />} onClick={() => { setOpen(true); }}>
+      <Button variant="contained" startIcon={<ControlPointIcon />} onClick={toggleOpen}>
       Добавить
       </Button>
-      <Dialog open={open} fullScreen={fullScreen} scroll='body'>
+      <Dialog open={open} fullScreen={fullScreen} scroll='body' onClose={toggleOpen}>
+        <IconButton
+          aria-label="close"
+          onClick={toggleOpen}
+          sx={(theme) => ({
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: theme.palette.grey[500]
+          })}
+        >
+          <CloseIcon />
+        </IconButton>
         <Card
           sx={{
             minWidth: 350,
@@ -145,29 +165,28 @@ export const AddProduct: FC = () => {
                 loadingPosition="start"
                 sx={{
                   mt: 1,
-                  textTransform: 'none',
                   fontSize: '16px'
                 }}
               >
                 Добавить
               </Button>
-              <Snackbar
-                open={postProductMutation.isSuccess}
-                autoHideDuration={3000}
-                onClose={() => { postProductMutation.reset(); }}
-              >
-                <Alert
-                  severity="success"
-                  variant="filled"
-                  sx={{ width: '100%' }}
-                >
-                Товар успешно добавлен
-                </Alert>
-              </Snackbar>
             </form>
           </CardContent>
         </Card>
       </Dialog>
+      <Snackbar
+        open={postProductMutation.isSuccess}
+        autoHideDuration={3000}
+        onClose={() => { postProductMutation.reset(); }}
+      >
+        <Alert
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Товар успешно добавлен
+        </Alert>
+      </Snackbar>
     </>
   );
 };

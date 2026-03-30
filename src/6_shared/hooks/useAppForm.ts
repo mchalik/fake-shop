@@ -4,7 +4,8 @@ export const useAppForm = <Props extends FieldValues>() => {
   const {
     register: registerBase,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<Props>();
 
   type RegisterParams = Parameters<typeof registerBase>;
@@ -17,6 +18,7 @@ export const useAppForm = <Props extends FieldValues>() => {
 
   return {
     register,
-    handleSubmit
+    handleSubmit,
+    reset
   };
 };
